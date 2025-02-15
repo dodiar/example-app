@@ -2,13 +2,16 @@
 
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\NewsController;
 
-Route::get('/welcome', function () {
-    $name = 'Dodi';
-    return view('welcome', ['name' => $name]);
-})->name('/home');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/blog', [BlogController::class, 'index']);
+Route::get('/news', [NewsController::class, 'index']);
+
+// Route::get('/blog', [BlogController::class, 'index']);
 
 Route::get('/about', [BlogController::class, 'about']);
 
