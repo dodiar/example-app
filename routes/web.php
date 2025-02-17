@@ -10,6 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/news', [NewsController::class, 'index']);
+Route::get('/news/create', [NewsController::class, 'create']);
 
 // Route::get('/blog', [BlogController::class, 'index']);
 

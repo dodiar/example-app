@@ -11,6 +11,11 @@ class NewsController extends Controller
     {
         $news = DB::table('news')->get();
  
-        return view('welcome', ['news' => $news]);
+        return view('news.index', ['news' => $news]);
+    }
+
+    public function create()
+    {
+        return view('news.create');
     }
 }
