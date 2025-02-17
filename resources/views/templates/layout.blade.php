@@ -19,6 +19,20 @@
             <ul class="nav nav-pills">
               <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
                             <li class="nav-item"><a href="about" class="nav-link">About</a></li>
+
+              @auth
+                <form action="/logout" method="POST">
+                  @csrf
+                  <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+              @endauth
+              
+              @guest
+                <li class="nav-item"><a href="/register" class="nav-link" aria-current="page">Register</a></li>
+                <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+              @endguest
+              
+             
             </ul>
           </header>
     </div>
