@@ -40,4 +40,11 @@ class NewsController extends Controller
 
         return view('news.show', ['news' => $news]);
     }
+
+    public function edit($id)
+    {
+        $news = DB::table('news')->where('id', $id)->first();
+
+        return view('news.edit', ['news' => $news]);
+    }
 }

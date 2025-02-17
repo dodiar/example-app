@@ -13,6 +13,7 @@ Route::get('/news', [NewsController::class, 'index']);
 Route::get('/news/create', [NewsController::class, 'create']);
 Route::post('/news', [NewsController::class, 'store']);
 Route::get('/news/{id}', [NewsController::class, 'show']);
+Route::get('/news/{id}/edit', [NewsController::class, 'edit']);
 
 // Route::get('/blog', [BlogController::class, 'index']);
 
