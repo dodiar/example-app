@@ -8,7 +8,13 @@
         <h2>{{ $news->title }}</h2>
         <p>{{ $news->body }}</p>
 
-        <a href="/news/{{ $news->id }}/edit" class="btn btn-primary">Edit</a>
-      </div>
+        
+        <form action="/news/{{ $news->id }}" method="POST">
+          <a href="/news/{{ $news->id }}/edit" class="btn btn-primary">Edit</a>
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+  </div>
     
 @endsection

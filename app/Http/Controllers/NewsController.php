@@ -9,7 +9,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = DB::table('news')->get();
+        $news = DB::table('news')->paginate(6);
  
         return view('news.index', ['news' => $news]);
     }
@@ -65,5 +65,12 @@ class NewsController extends Controller
             );
 
         return redirect('/news/' . $request->id);
+    }
+
+    public function destroy($id)
+    {
+        $deleted = DB::table('news')->where('id', $id)->delete();
+
+        return redirect('/news');
     }
 }
