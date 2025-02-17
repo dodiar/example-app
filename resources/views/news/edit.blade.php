@@ -6,9 +6,10 @@
   <div class="container" id="featured-3">    
       <h1>Edit News</h1>
 
-      <form action="/news" method="POST">
+      <form action="/news/{{ $news->id }}" method="POST">
         @csrf
         @method('put')
+        <input type="hidden" name="id" value="{{ $news->id }}">
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Title</label>
           <input type="text" name="title" class="form-control" id="exampleFormControlInput1" value="{{ $news->title }}">

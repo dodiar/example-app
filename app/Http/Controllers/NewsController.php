@@ -47,4 +47,23 @@ class NewsController extends Controller
 
         return view('news.edit', ['news' => $news]);
     }
+
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $affected = DB::table('news')
+            ->where('id', $request->id)
+            ->update(
+                [
+                'title' => $request->title,
+                'body' => $request->body
+                ]
+            );
+
+        return redirect('/news/' . $request->id);
+    }
 }
