@@ -18,4 +18,19 @@ class NewsController extends Controller
     {
         return view('news.create');
     }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        DB::table('news')->insert([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+
+        return redirect('/news');
+    }
 }

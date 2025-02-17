@@ -12,10 +12,19 @@
           <label for="exampleFormControlInput1" class="form-label">Title</label>
           <input type="text" name="title" class="form-control" id="exampleFormControlInput1">
         </div>
+
+        @error('title')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Body</label>
           <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
+
+        @error('body')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
         <button type="submit" class="btn btn-primary">Create</button>
       </form>
