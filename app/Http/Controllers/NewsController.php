@@ -7,10 +7,17 @@ use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $news = DB::table('news')->paginate(6);
- 
+        if ($request->search) 
+        {
+            $news = DB::table('news')
+                ->where('title', 'like', '%' . $request->search . '%')
+                ->paginate(6);
+        } else {
+            $news = DB::table('news')->paginate(6);
+        }
+        
         return view('news.index', ['news' => $news]);
     }
 

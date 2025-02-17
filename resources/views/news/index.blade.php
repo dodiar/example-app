@@ -3,7 +3,10 @@
 @section('title', 'Page Home')
 
 @section('content')
-<div class="container px-4 py-5" id="featured-3">    
+<div class="container px-4 py-5" id="featured-3">
+    <form action="/news" method="GET">
+      <input type="text" name="search" class="form-control" placeholder="Search">
+    </form>    
     <div class="row g-4 py-1 row-cols-1 row-cols-lg-3">
     @php
       $num = 1;
