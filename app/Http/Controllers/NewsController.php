@@ -33,4 +33,11 @@ class NewsController extends Controller
 
         return redirect('/news');
     }
+
+    public function show($id)
+    {
+        $news = DB::table('news')->where('id', $id)->first();
+
+        return view('news.show', ['news' => $news]);
+    }
 }

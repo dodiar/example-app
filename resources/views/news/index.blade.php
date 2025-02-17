@@ -15,8 +15,8 @@
         </div>
         <h3 class="fs-2 text-body-emphasis">{{ $item->title }}</h3>
         <p>{{ $item->body }}</p>
-        <a href="#" class="icon-link">
-          Read
+        <a href="/news/{{ $item->id }}" class="icon-link">
+          Read More
           <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
         </a>       
       </div>
