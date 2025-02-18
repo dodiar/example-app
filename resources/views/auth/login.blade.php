@@ -26,6 +26,14 @@
         @error('password')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
+
+        <div class="form-check">
+            <input class="form-check-input" name="remember_me" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Remember me
+        </div>
+
+        <br>
         
         <button type="submit" class="btn btn-primary">Login</button>
       </form>
