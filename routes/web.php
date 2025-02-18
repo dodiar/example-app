@@ -13,16 +13,16 @@ Route::get('/', function () {
 Route::redirect('/', '/news');
 
 Route::get('/news', [NewsController::class, 'index']);
-Route::get('/news/create', [NewsController::class, 'create']);
-Route::post('/news', [NewsController::class, 'store']);
+Route::get('/news/create', [NewsController::class, 'create'])->middleware('auth');
+Route::post('/news', [NewsController::class, 'store'])->middleware('auth');
 Route::get('/news/{id}', [NewsController::class, 'show']);
-Route::get('/news/{id}/edit', [NewsController::class, 'edit']);
-Route::put('/news/{id}', [NewsController::class, 'update']);
-Route::delete('/news/{id}', [NewsController::class, 'destroy']);
+Route::get('/news/{id}/edit', [NewsController::class, 'edit'])->middleware('auth');
+Route::put('/news/{id}', [NewsController::class, 'update'])->middleware('auth');
+Route::delete('/news/{id}', [NewsController::class, 'destroy'])->middleware('auth');
 
 Route::get('/register', [AuthController::class, 'registerForm']);
 Route::post('/register', [AuthController::class, 'register']);
-Route::get('/login', [AuthController::class, 'loginForm']);
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
