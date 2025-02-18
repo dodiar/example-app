@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\BlogController;
+use App\Mail\MailTest;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\NewsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +28,11 @@ Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
+Route::get('/test_mail', function () {
+    $name = 'Dodi';
+    Mail::to('test@example.com')->send(new MailTest($name));
+    return 'Ok';
+});
 
 // Route::get('/blog', [BlogController::class, 'index']);
 
