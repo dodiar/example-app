@@ -3,15 +3,13 @@
 @section('title', 'Login Page')
 
 @section('content')
-  <div class="container" id="featured-3">
-      @if($status = session('status'))
-        <div class="alert alert-success" role="alert">
-          {{ $status }}
-        </div>
-      @endif    
-      <h1>Login</h1>      
-      <form action="/login" method="POST">
+  <div class="container" id="featured-3">    
+      <h1>Reset Password</h1>
+
+      <form action="/reset-password" method="POST">
         @csrf
+
+        <input type="hidden" name="token" value="{{ $token }}">
         
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Email</label>
@@ -31,16 +29,17 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
-        <div class="form-check">
-            <input class="form-check-input" name="remember_me" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Remember me
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Password Confirmation</label>
+          <input type="password" name="password_confirmation" class="form-control" id="exampleFormControlInput1">
         </div>
 
-        <br>
+        @error('password_confirmation')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+       
+        <button type="submit" class="btn btn-primary">Forgot Password</button>
         
-        <button type="submit" class="btn btn-primary">Login</button>
-        <a href="/forgot-password" class="btn btn-secondary">Forgot Password</a>
       </form>
   </div>
     
