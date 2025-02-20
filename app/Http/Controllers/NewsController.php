@@ -51,10 +51,13 @@ class NewsController extends Controller
         // $news->body = $request->body;
         // $news->save();
 
+        $imagePath = $request->file('image')->store('images');
+
         // Cara kedua
         News::create([
             'title' => $request->title,
             'body' => $request->body,
+            'image_path' => $imagePath,
         ]);
 
         return redirect('/news');
@@ -94,10 +97,14 @@ class NewsController extends Controller
         //         ]
         //     );
 
+        // Upload image
+        $imagePath = $request->file('image')->store('images');
+
         // Olequent ORM update
         $news = News::find($request->id);
         $news->title = $request->title;
         $news->body = $request->body;
+        $news->image_path = $imagePath;
         $news->save();
 
         return redirect('/news/' . $request->id);

@@ -25,6 +25,7 @@
       <div class="feature col">
         <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">          
         </div>
+        <img src="{{ asset('storage/' . $item->image_path) }}" alt="" class="img-fluid"> 
         <h3 class="fs-2 text-body-emphasis">{{ $item->title }}</h3>
         <p>{{ $item->body }}</p>
         <a href="/news/{{ $item->id }}" class="icon-link">
