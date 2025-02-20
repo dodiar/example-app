@@ -10,13 +10,18 @@ class NewsController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->search) 
+        $search = $request->search;
+        if ($search) 
         {
-            $news = DB::table('news')
-                ->where('title', 'like', '%' . $request->search . '%')
-                ->paginate(6);
+            // $news = DB::table('news')
+            //     ->where('title', 'like', "&$search&")
+            //     ->paginate(6);
+            // Olequent orm search
+            $news = News::where('title', 'like', "%$search%")->paginate(3);
         } else {
-            $news = DB::table('news')->paginate(6);
+            // $news = DB::table('news')->paginate(6);
+            // Olequent orm paginate
+            $news = News::paginate(3);
         }
         
         return view('news.index', ['news' => $news]);
