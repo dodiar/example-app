@@ -62,7 +62,9 @@ class NewsController extends Controller
 
     public function show($id)
     {
-        $news = DB::table('news')->where('id', $id)->first();
+        // $news = DB::table('news')->where('id', $id)->first();
+        // Olequent ORM show
+        $news = News::find($id);
 
         return view('news.show', ['news' => $news]);
     }
