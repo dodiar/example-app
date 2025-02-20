@@ -105,7 +105,10 @@ class NewsController extends Controller
 
     public function destroy($id)
     {
-        $deleted = DB::table('news')->where('id', $id)->delete();
+        // $deleted = DB::table('news')->where('id', $id)->delete();
+
+        // Olequent ORM delete
+        News::find($id)->delete();
 
         return redirect('/news');
     }
