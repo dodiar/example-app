@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -33,7 +34,20 @@ class NewsController extends Controller
             'body' => 'required',
         ]);
 
-        DB::table('news')->insert([
+        // DB::table('news')->insert([
+        //     'title' => $request->title,
+        //     'body' => $request->body,
+        // ]);
+
+        // insert orm
+        // Cara pertama
+        // $news = new News;
+        // $news->title = $request->title;
+        // $news->body = $request->body;
+        // $news->save();
+
+        // Cara kedua
+        News::create([
             'title' => $request->title,
             'body' => $request->body,
         ]);
