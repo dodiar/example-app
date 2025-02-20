@@ -46,6 +46,10 @@ class NewsController extends Controller
     {
         $news = News::find($id);
 
+        if (!$news) {
+            return response()->json(['message' => 'News not found'], 404);
+        }
+
         return response()->json(['data' => $news], 200);
     }
 
@@ -54,7 +58,26 @@ class NewsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $news = News::find($id);
+
+        if (!$news) {
+            return response()->json(['message' => 'News not found'], 404);
+        }
+
+        $validated = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $imagePath = $request->file('image')->store('images');
+
+        $news->update([
+            'title' => $request->title,
+            'body' => $request->body,
+            'image_path' => $imagePath,
+        ]);
+
+        return response()->json(['data' => $news], 200);
     }
 
     /**
