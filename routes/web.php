@@ -107,6 +107,22 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 
+Route::get('/writer', function() {
+    return 'writer page';
+})->middleware('auth', 'role:writer');
+
+Route::get('/editor', function() {
+    return 'editor page';
+})->middleware('auth', 'role:editor');
+
+Route::get('/giveRole/{id}', function($id) {
+    $user = User::find($id);
+
+    $user->assignRole('editor');
+
+    return 'ok';
+});
+
 // Route::get('/blog', [BlogController::class, 'index']);
 
 Route::get('/about', [BlogController::class, 'about']);

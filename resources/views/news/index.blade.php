@@ -6,7 +6,16 @@
 <div class="container px-4 py-5" id="featured-3">
     <form action="/news" method="GET">
       <input type="text" name="search" class="form-control" placeholder="Search">
-    </form>    
+    </form>  
+    
+    <br>
+
+    @role('writer')
+      @auth
+      <a href="/news/create" class="btn btn-primary">Create</a>
+      @endauth
+    @endrole
+    
     <div class="row g-4 py-1 row-cols-1 row-cols-lg-3">
     @php
       $num = 1;
