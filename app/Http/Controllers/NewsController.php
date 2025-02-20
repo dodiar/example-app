@@ -85,14 +85,20 @@ class NewsController extends Controller
             'body' => 'required',
         ]);
 
-        $affected = DB::table('news')
-            ->where('id', $request->id)
-            ->update(
-                [
-                'title' => $request->title,
-                'body' => $request->body
-                ]
-            );
+        // $affected = DB::table('news')
+        //     ->where('id', $request->id)
+        //     ->update(
+        //         [
+        //         'title' => $request->title,
+        //         'body' => $request->body
+        //         ]
+        //     );
+
+        // Olequent ORM update
+        $news = News::find($request->id);
+        $news->title = $request->title;
+        $news->body = $request->body;
+        $news->save();
 
         return redirect('/news/' . $request->id);
     }
