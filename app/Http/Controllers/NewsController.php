@@ -71,7 +71,9 @@ class NewsController extends Controller
 
     public function edit($id)
     {
-        $news = DB::table('news')->where('id', $id)->first();
+        // $news = DB::table('news')->where('id', $id)->first();
+        // Olequent ORM edit
+        $news = News::find($id);
 
         return view('news.edit', ['news' => $news]);
     }
