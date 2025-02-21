@@ -4,6 +4,9 @@
 
 @section('content')
 <div class="container px-4 py-5" id="featured-3">
+    @auth
+      <h1>{{ __('message.welcome') }},  {{ Auth::user()->name }}</h1>
+    @endauth
     <form action="/news" method="GET">
       <input type="text" name="search" class="form-control" placeholder="Search">
     </form>  

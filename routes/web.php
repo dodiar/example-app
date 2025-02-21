@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Mail\MailTest;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -121,6 +122,20 @@ Route::get('/giveRole/{id}', function($id) {
     $user->assignRole('editor');
 
     return 'ok';
+});
+
+Route::get('/chang-lang/{locale}', function (string $locale) {
+    if (!in_array($locale, ['en', 'id'])) {
+        abort(400);
+    }
+ 
+    App::setLocale($locale);
+
+    session()->put('locale', $locale);
+    
+    $locale = App::currentLocale();
+
+    return $locale;
 });
 
 // Route::get('/blog', [BlogController::class, 'index']);
