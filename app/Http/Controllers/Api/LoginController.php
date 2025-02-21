@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -23,12 +24,17 @@ class LoginController extends Controller
             return response()->json(['message', 'error'], 404);
         }
 
+        $user = User::where(['email' => $request->email])->first();
+
         if (Auth::attempt([
             'email' => $request->email,
             'password' => $request->password,
         ]))
+
         {
-            return response()->json(['data' => 'success'], 200);
+            $token = $user->createToken('api_token')->plainTextToken; 
+
+            return response()->json(['token' => $token], 200);
         }
     }
 }
