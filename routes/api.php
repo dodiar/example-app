@@ -10,7 +10,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::apiResource('news', NewsController::class);
+Route::apiResource('news', NewsController::class)->middleware('auth:sanctum');
 
 Route::post('/register', RegisterController::class);
 Route::post('/login', LoginController::class);
