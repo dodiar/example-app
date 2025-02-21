@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\NewsController;
+use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\RegisterController;
 
 Route::get('/user', function (Request $request) {
@@ -12,3 +13,4 @@ Route::get('/user', function (Request $request) {
 Route::apiResource('news', NewsController::class);
 
 Route::post('/register', RegisterController::class);
+Route::post('/login', LoginController::class);
